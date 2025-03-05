@@ -93,4 +93,12 @@ public class Game {
 
     private void check_tie(){}
 
+    @FXML
+    public void ResetBoard(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+            }
+        }
+    }
 }

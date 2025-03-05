@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* Set a default background for the scene */
 .root {
     -fx-background-color: #f0f0f0;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-text-color: white;
+    -fx-font-family: "Roboto";
 }
 
 /* Style for buttons */
@@ -11,6 +17,22 @@
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+}
+.background {
+    -fx-background-color: linear-gradient(to right, rgba(15,12,41,1) 0%, rgba(48,43,99,1) 48%, rgb(36, 36, 62) 88%);
+}
+.border {
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+    -fx-border-insets: 0;
+}
+.button-cell {
+    -fx-border-width: 1px;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+.button-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
 }
 
 .button:hover {
