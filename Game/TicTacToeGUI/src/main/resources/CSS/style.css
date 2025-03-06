@@ -1,38 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* Set a default background for the scene */
+/* ==================== General Styles ==================== */
 .root {
     -fx-background-color: #f0f0f0;
     -fx-font-size: 16px;
     -fx-text-fill: white;
-    -fx-text-color: white;
     -fx-font-family: "Roboto";
 }
 
-/* Style for buttons */
-.button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-}
 .background {
     -fx-background-color: linear-gradient(to right, rgba(15,12,41,1) 0%, rgba(48,43,99,1) 48%, rgb(36, 36, 62) 88%);
 }
-.border {
-    -fx-border-width: 1px;
-    -fx-border-color: white;
-    -fx-border-insets: 0;
-}
+
+/* ==================== Buttons ==================== */
 .button-cell {
-    -fx-border-width: 1px;
+    -fx-background-color: rgba(108, 103, 103, 0);
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1px;
 }
+
 .button-cell:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-color: rgba(67, 63, 63, 0.1);
 }
 
 .button:hover {
@@ -43,41 +35,34 @@
     -fx-background-color: #388E3C;
 }
 
-/* Style for labels */
+/* ==================== Labels ==================== */
 .label {
     -fx-font-size: 16px;
-    -fx-text-fill: #333;
+    -fx-text-fill: #ffffff;
 }
 
-/* Style for text fields */
-.text-field {
-    -fx-font-size: 14px;
-    -fx-padding: 5px;
-    -fx-border-color: #aaa;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 3px;
-}
-
+/* ==================== Text Fields ==================== */
 .text-field:focused {
     -fx-border-color: #4CAF50;
 }
 
-/* Style for text areas */
-.text-area {
-    -fx-font-size: 14px;
+/* ==================== Text Areas ==================== */
+.input-field {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
     -fx-padding: 5px;
-    -fx-border-color: #aaa;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 3px;
+    -fx-border-color: transparent transparent #aaa transparent;
+    -fx-border-radius: 5px;
+    -fx-background-color: transparent;
 }
 
-/* Style for checkboxes */
+/* ==================== Checkboxes ==================== */
 .check-box {
     -fx-font-size: 14px;
     -fx-text-fill: #333;
 }
 
-/* Style for combo boxes */
+/* ==================== Combo Boxes ==================== */
 .combo-box {
     -fx-font-size: 14px;
     -fx-border-color: #aaa;
@@ -86,5 +71,56 @@
 }
 
 .combo-box:focused {
-    -fx-border-color: #4CAF50;
+    -fx-border-color: #0f1921;
+    -fx-background-color: #0f1921;
+}
+
+/* ==================== Menu Bar & Menu Items ==================== */
+.menu-bar {
+    -fx-background-color: #333;
+}
+
+.menu {
+    -fx-background-color: #444;
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-background-color: #555;
+    -fx-text-fill: white;
+}
+
+.menu-item:hover {
+    -fx-background-color: #777;
+}
+
+/* ==================== ListView ==================== */
+.list-view {
+    -fx-background-color: transparent;  /* Make background transparent */
+    -fx-border-color: white;  /* White border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Style for list cells (items in the list) */
+.list-view .list-cell {
+    -fx-background-color: rgba(15, 12, 41, 0.5);  /* Semi-transparent dark color */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px;
+    -fx-border-color: rgba(255, 255, 255, 0.3); /* Light border for separation */
+}
+
+/* Hover effect */
+.list-view .list-cell:hover {
+    -fx-background-color: rgba(48, 43, 99, 0.6); /* Adjusted to your gradient */
+}
+
+/* Selected item */
+.list-view .list-cell:selected {
+    -fx-background-color: rgb(58, 24, 99); /* Slightly lighter selection */
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
 }

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="707.0" styleClass="background" stylesheets="@../../../../CSS/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictactoegui.Controller.Users">
    <center>
-      <ListView fx:id="listView" prefHeight="370.0" prefWidth="494.0" styleClass="border" stylesheets="@../../../../CSS/style.css" BorderPane.alignment="CENTER">
+      <ListView fx:id="listView" prefHeight="520.0" prefWidth="575.0" styleClass="background" stylesheets="@../../../../CSS/style.css" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
@@ -26,11 +30,25 @@
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="101.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField />
+            <TextField fx:id="userInput" styleClass="input-field" stylesheets="@../../../../CSS/style.css" />
+            <ImageView fitHeight="34.0" fitWidth="38.0" onMouseClicked="#searchByName">
+               <image>
+                  <Image url="@../../../../assert/search.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="text-secondary" stylesheets="@../../../../CSS/style.css" text="Filter By" />
+            <MenuButton mnemonicParsing="false" styleClass="button-cell" text="Status" textFill="WHITE">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Online" />
+                <MenuItem mnemonicParsing="false" text="Rate" />
+              </items>
+            </MenuButton>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </HBox>
    </top>
 </BorderPane>

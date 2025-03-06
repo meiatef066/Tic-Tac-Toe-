@@ -1,16 +1,14 @@
 package com.example.tictactoegui.Controller;
 
 import com.example.tictactoegui.model.User;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.*;
@@ -22,10 +20,10 @@ import java.util.List;
 
 public class Users {
     @FXML
-    private ListView<User> listView;  // ✅ Change ListView<Text> → ListView<User>
+    private ListView<User> listView;
 
     @FXML
-    private TextField searchField;
+    private TextField userInput;
 
     private List<User> users = new ArrayList<>();
 
@@ -37,15 +35,17 @@ public class Users {
     private void fetchUsersFromServer() {
         new Thread(() -> {
             try {
-                URL url = new URL("http://localhost:8080/v1/api/users");
                 HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder().uri(url.toURI()).GET().build();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("http://localhost:8080/v1/api/users"))
+                        .GET()
+                        .build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
                 ObjectMapper mapper = new ObjectMapper();
-                this.users = mapper.readValue(response.body(), new TypeReference<List<User>>() {});
+                this.users = mapper.readValue(response.body(), mapper.getTypeFactory().constructCollectionType(List.class, User.class));
 
-                Platform.runLater(this::updateListView);
+                Platform.runLater(() -> updateListView(users));
 
             } catch (Exception e) {
                 Platform.runLater(() -> showError("Error fetching users: " + e.getMessage()));
@@ -53,7 +53,48 @@ public class Users {
         }).start();
     }
 
-    private void updateListView() {
+    @FXML
+    private void searchByName(MouseEvent event) {
+        searchByNameHelper();
+    }
+
+    @FXML
+    private void searchByName(ActionEvent event) {
+        searchByNameHelper();
+    }
+
+    private void searchByNameHelper() {
+        String username = userInput.getText().trim();
+        if (username.isEmpty()) {
+            showError("Please enter a user name");
+            return;
+        }
+
+        new Thread(() -> {
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("http://localhost:8080/v1/api/users/" + username))
+                        .GET()
+                        .build();
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+                ObjectMapper mapper = new ObjectMapper();
+                User user = mapper.readValue(response.body(), User.class);
+
+                List<User> filteredUsers = new ArrayList<>();
+                if (user != null) {
+                    filteredUsers.add(user);
+                }
+
+                Platform.runLater(() -> updateListView(filteredUsers));
+
+            } catch (Exception e) {
+                Platform.runLater(() -> showError("User not found: " + e.getMessage()));
+            }
+        }).start();
+    }
+    private void updateListView(List<User> users) {
         ObservableList<User> observableUsers = FXCollections.observableArrayList(users);
         listView.setItems(observableUsers);
 

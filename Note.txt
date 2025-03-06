@@ -1,0 +1,2 @@
+[Player A] → Sends invite → [Spring Boot Server] → Notifies → [Player B]
+  (JavaFX)                   (WebSocket)          (JavaFX)
