@@ -8,9 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.*;
@@ -18,12 +18,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Users {
     @FXML
-    private ListView<Text> listView;
+    private ListView<User> listView;  // ✅ Change ListView<Text> → ListView<User>
+
     @FXML
     private TextField searchField;
 
@@ -31,65 +31,50 @@ public class Users {
 
     @FXML
     public void initialize() {
-        System.out.println("Initializing Users Controller...");
         fetchUsersFromServer();
     }
-    private void fetchUsersFromServer() {
-        new Thread( ()->{
-            try {
 
+    private void fetchUsersFromServer() {
+        new Thread(() -> {
+            try {
                 URL url = new URL("http://localhost:8080/v1/api/users");
                 HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder().uri(url.toURI()).GET().build();
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-                HttpRequest request=HttpRequest.newBuilder().uri(url.toURI()).GET().build();
+                ObjectMapper mapper = new ObjectMapper();
+                this.users = mapper.readValue(response.body(), new TypeReference<List<User>>() {});
 
-                HttpResponse<String> response= client.send(request,HttpResponse.BodyHandlers.ofString());
+                Platform.runLater(this::updateListView);
 
-                System.out.println("Response Code: " + response.statusCode());
-                System.out.println("Response Body: " + response.body());
-
-//                ObjectMapper mapper = new ObjectMapper();
-//                try {
-//                    this.users = mapper.readValue(response.body(), new TypeReference<List<User>>() {});
-//                } catch (Exception e) {
-//                    System.out.println("Error parsing JSON: " + e.getMessage());
-//                }
-
-//                for (User user : users) {
-//                    System.out.println(user);
-//                }
-                if (response.body().isEmpty()) {
-                    System.out.println("❌ Empty response from server!");
-                } else {
-                    System.out.println("✅ Received Data: " + response.body());
-                }
-
-//                Platform.runLater(() -> {
-//                    updateListView(users); // Update UI
-//                });
-
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            } catch (IOException | URISyntaxException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                Platform.runLater(() -> showError("Error fetching users: " + e.getMessage()));
             }
-
         }).start();
     }
 
-    private void updateListView(List<User> users) {
-        ObservableList<Text> items = FXCollections.observableArrayList();
+    private void updateListView() {
+        ObservableList<User> observableUsers = FXCollections.observableArrayList(users);
+        listView.setItems(observableUsers);
 
+        listView.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(User user, boolean empty) {
+                super.updateItem(user, empty);
+                if (empty || user == null) {
+                    setText(null);
+                } else {
+                    setText(user.getUsername() + " (" + user.getUserStatus() + ")");
+                }
+            }
+        });
     }
 
-    private void WaitUntillConnect() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("Game Update");
-        alert.setContentText("Wait Untill connect to server");
-        alert.showAndWait(); // Wait until user closes
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Something went wrong");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
-
 }

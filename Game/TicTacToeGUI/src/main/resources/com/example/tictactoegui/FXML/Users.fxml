@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="707.0" styleClass="background" stylesheets="@../../../../CSS/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictactoegui.Controller.Users">
    <center>
-      <ListView prefHeight="370.0" prefWidth="494.0" styleClass="border" stylesheets="@../../../../CSS/style.css" BorderPane.alignment="CENTER">
+      <ListView fx:id="listView" prefHeight="370.0" prefWidth="494.0" styleClass="border" stylesheets="@../../../../CSS/style.css" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

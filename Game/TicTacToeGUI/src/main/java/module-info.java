@@ -10,4 +10,6 @@ module com.example.tictactoegui {
     exports com.example.tictactoegui;
     exports com.example.tictactoegui.Controller;
     opens com.example.tictactoegui.Controller to javafx.fxml;
+    opens com.example.tictactoegui.model to com.fasterxml.jackson.databind;
+
 }
