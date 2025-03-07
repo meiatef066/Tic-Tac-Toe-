@@ -14,9 +14,9 @@
       <VBox alignment="CENTER" prefHeight="363.0" prefWidth="680.0" spacing="38.0">
          <children>
             <Button mnemonicParsing="false" onAction="#MultiPlayer" prefHeight="37.0" prefWidth="223.0" text="Multi Player" />
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Exit" />
+            <Button mnemonicParsing="false" onAction="#Online" prefHeight="37.0" prefWidth="223.0" text="Online" />
             <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Computer" />
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Online" />
+            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Exit" />
          </children>
          <opaqueInsets>
             <Insets bottom="22.0" left="24.0" right="6.0" top="5.0" />
