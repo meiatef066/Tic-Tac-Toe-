@@ -7,16 +7,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="680.0" spacing="13.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictactoegui.Controller.Main">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="680.0" spacing="13.0" styleClass="background" stylesheets="@../../../../CSS/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tictactoegui.Controller.Main">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="245.0" text="Tic Tac Toe" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="244.0" text="Tic Tac Toe" />
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" prefHeight="363.0" prefWidth="680.0" spacing="38.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#MultiPlayer" prefHeight="37.0" prefWidth="223.0" text="Multi Player" />
-            <Button mnemonicParsing="false" onAction="#Online" prefHeight="37.0" prefWidth="223.0" text="Online" />
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Computer" />
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" text="Exit" />
+            <Button mnemonicParsing="false" onAction="#MultiPlayer" prefHeight="37.0" prefWidth="223.0" styleClass="button-cell" stylesheets="@../../../../CSS/style.css" text="Multi Player" />
+            <Button mnemonicParsing="false" onAction="#Online" prefHeight="37.0" prefWidth="223.0" styleClass="button-cell" text="Online" />
+            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" styleClass="button-cell" text="Computer" />
+            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="223.0" styleClass="button-cell" text="Exit" />
          </children>
          <opaqueInsets>
             <Insets bottom="22.0" left="24.0" right="6.0" top="5.0" />

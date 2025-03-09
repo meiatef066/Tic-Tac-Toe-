@@ -2,19 +2,9 @@
   (JavaFX)                   (WebSocket)          (JavaFX)
 _______________________________________________________
 
-Player 1 , player 2
-________________
-online -?
-1 get player name	 
-2 present all player  ✏
-3 try to send invitation for another player
-4 start a game if player 2 accept
-* start a session
-5 play online send moves online 
-_________________________ 
-__
-offline -> ask for name of player 1 and player 2 and go on it`s done 
-__
-exit
-_______________
+✅ Features:
+Uses images for X and O.
+Detects winners correctly.
+Checks for tie games.
+Resets the board properly.
 	

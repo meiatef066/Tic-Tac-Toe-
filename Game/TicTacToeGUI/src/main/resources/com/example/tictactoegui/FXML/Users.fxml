@@ -32,8 +32,9 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" BorderPane.alignment="CENTER">
          <children>
+            <TextField fx:id="playerName" />
             <TextField fx:id="userInput" styleClass="input-field" stylesheets="@../../../../CSS/style.css" />
-            <ImageView fitHeight="34.0" fitWidth="38.0" onMouseClicked="#searchByName">
+            <ImageView fitHeight="34.0" fitWidth="38.0" >
                <image>
                   <Image url="@../../../../assert/search.png" />
                </image>
